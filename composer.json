@@ -19,7 +19,7 @@
     },
     
     "autoload": {
-        "psr-0": { "Enyo\\Silex\\Provider": "lib/" }
+        "psr-0": { "Palma\\Silex\\Provider": "lib/" }
     },
     "extra" : {
         "branch-alias" : {
