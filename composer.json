@@ -1,12 +1,12 @@
 {
-    "name": "palma/doctrine-orm-service-provider",
+    "name": "enyoslutions/doctrine-orm-service-provider",
     "description": "A Silex DoctrineORM Service provider",
     "keywords": ["doctrine", "orm", "silex"],
     "license": "MIT",
     "authors": [
         {
-            "name": "Francisco Javier Palma Moreno",
-            "email": "palmasev@gmail.com"
+            "name": "Faouzane BATIGA",
+            "email": "fb@enyosolutions.com"
         }
     ],
     "minimun-stability" : "dev",
@@ -19,7 +19,7 @@
     },
     
     "autoload": {
-        "psr-0": { "Palma\\Silex\\Provider": "lib/" }
+        "psr-0": { "Enyo\\Silex\\Provider": "lib/" }
     },
     "extra" : {
         "branch-alias" : {
