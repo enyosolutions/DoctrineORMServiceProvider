@@ -42,43 +42,43 @@ use Doctrine\Common\Cache\ArrayCache;
 
 class DoctrineORMServiceProvider implements ServiceProviderInterface {
     public function register(Application $app){
-        $app['doctrine_orm.configuration'] = $app->share(function($app){
+        $app['orm.configuration'] = $app->share(function($app){
             $configuration = new Configuration();
-            if(isset($app['doctrine_orm.metadata_cache'])){
-	            $configuration->setMetadataCacheImpl($app['doctrine_orm.metadata_cache']);
+            if(isset($app['orm.metadata_cache'])){
+	            $configuration->setMetadataCacheImpl($app['orm.metadata_cache']);
 	        } else {
 	        	$configuration->setMetadataCacheImpl(new ArrayCache());
 	        }
-            $driverImpl = $configuration->newDefaultAnnotationDriver($app['doctrine_orm.entities_path']);
+            $driverImpl = $configuration->newDefaultAnnotationDriver($app['orm.entities_path']);
             $configuration->setMetadataDriverImpl($driverImpl);
 
-            if(isset($app['doctrine_orm.query_cache'])){
-	            $configuration->setQueryCacheImpl($app['doctrine_orm.query_cache']);
+            if(isset($app['orm.query_cache'])){
+	            $configuration->setQueryCacheImpl($app['orm.query_cache']);
 	        } else {
 	        	$configuration->setQueryCacheImpl(new ArrayCache());
             }
 
-            if(isset($app['doctrine_orm.result_cache'])){
-                $configuration->setResultCacheImpl($app['doctrine_orm.result_cache']);
+            if(isset($app['orm.result_cache'])){
+                $configuration->setResultCacheImpl($app['orm.result_cache']);
             }
 
-            $configuration->setProxyDir($app['doctrine_orm.proxies_path']);
-            $configuration->setProxyNamespace($app['doctrine_orm.proxies_namespace']);
+            $configuration->setProxyDir($app['orm.proxies_path']);
+            $configuration->setProxyNamespace($app['orm.proxies_namespace']);
             $configuration->setAutogenerateProxyClasses(false);
-            if(isset($app['doctrine_orm.autogenerate_proxy_classes'])){
-                $configuration->setAutogenerateProxyClasses($app['doctrine_orm.autogenerate_proxy_classes']);
+            if(isset($app['orm.autogenerate_proxy_classes'])){
+                $configuration->setAutogenerateProxyClasses($app['orm.autogenerate_proxy_classes']);
 			} else {
 				$configuration->setAutogenerateProxyClasses(true);
 			}
             return $configuration;
         });
 
-        $app['doctrine_orm.connection'] = $app->share(function($app){
-            return DriverManager::getConnection($app['doctrine_orm.connection_parameters'], $app['doctrine_orm.configuration'], new EventManager());
+        $app['orm.connection'] = $app->share(function($app){
+            return DriverManager::getConnection($app['orm.connection_parameters'], $app['orm.configuration'], new EventManager());
         });
 
-        $app['doctrine_orm.em'] = $app->share(function($app) {
-            return EntityManager::create($app['doctrine_orm.connection'], $app['doctrine_orm.configuration'], $app['doctrine_orm.connection']->getEventManager());
+        $app['orm.em'] = $app->share(function($app) {
+            return EntityManager::create($app['orm.connection'], $app['orm.configuration'], $app['orm.connection']->getEventManager());
         });
 		
     }
