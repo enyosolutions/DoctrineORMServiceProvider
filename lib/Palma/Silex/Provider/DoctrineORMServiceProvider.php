@@ -49,6 +49,11 @@ class DoctrineORMServiceProvider implements ServiceProviderInterface {
 	        } else {
 	        	$configuration->setMetadataCacheImpl(new ArrayCache());
 	        }
+	        
+	    if(isset($app['orm.entities_namespace'])){
+                AnnotationRegistry::registerAutoloadNamespace($app['orm.entities_namespace'], $app['orm.entities_path']);
+            }
+            
             $driverImpl = $configuration->newDefaultAnnotationDriver($app['orm.entities_path'],false);
             $configuration->setMetadataDriverImpl($driverImpl);
 
