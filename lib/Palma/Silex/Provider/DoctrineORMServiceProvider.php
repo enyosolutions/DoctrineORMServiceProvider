@@ -39,6 +39,7 @@ use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\DriverManager;
 use Doctrine\Common\EventManager;
 use Doctrine\Common\Cache\ArrayCache;
+use Doctrine\Common\Annotations\AnnotationRegistry;
 
 class DoctrineORMServiceProvider implements ServiceProviderInterface {
     public function register(Application $app){
